@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Layout, Menu, Button } from 'antd';
 import {
+  DashboardOutlined,
   HomeOutlined,
   InfoCircleOutlined,
   BookOutlined,
   PhoneOutlined,
-  MenuOutlined
+  MenuOutlined,
+  UserOutlined
 } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 const { Sider } = Layout;
@@ -26,10 +28,14 @@ const Sidebar = () => {
       />
       <Sider collapsible collapsed={collapsed} trigger={null}>
         <Menu theme="dark" mode="inline" onClick={handleClick}>
+          <Menu.Item key="/dashboard" icon={<DashboardOutlined />}>Dashboard</Menu.Item>
           <Menu.Item key="/" icon={<HomeOutlined />}>Home</Menu.Item>
           <Menu.Item key="/about" icon={<InfoCircleOutlined />}>About</Menu.Item>
           <Menu.Item key="/courses" icon={<BookOutlined />}>Courses</Menu.Item>
           <Menu.Item key="/contact" icon={<PhoneOutlined />}>Contact</Menu.Item>
+          <Menu.Item key="/students" icon={<UserOutlined />}>Students</Menu.Item>
+
+
         </Menu>
       </Sider>
     </>
