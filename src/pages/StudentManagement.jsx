@@ -1,6 +1,16 @@
-// src/pages/StudentManagement.jsx
+
 import React, { useState } from 'react';
-import { Table, Button, Modal, Form, Input, Space, Popconfirm } from 'antd';
+import {
+  Table,
+  Button,
+  Modal,
+  Form,
+  Input,
+  Popconfirm,
+  Dropdown,
+  Menu,
+} from 'antd';
+import { MoreOutlined } from '@ant-design/icons';
 
 const StudentManagement = () => {
   const [form] = Form.useForm();
@@ -21,14 +31,12 @@ const StudentManagement = () => {
   const handleOk = () => {
     form.validateFields().then((values) => {
       if (editingStudent) {
-        // Update existing
         setStudents((prev) =>
           prev.map((stu) =>
             stu.id === editingStudent.id ? { ...stu, ...values } : stu
           )
         );
       } else {
-        // Add new
         const newStudent = { ...values, id: Date.now() };
         setStudents([...students, newStudent]);
       }
@@ -56,30 +64,48 @@ const StudentManagement = () => {
     },
     {
       title: 'Actions',
-      render: (_, record) => (
-        <Space>
-          <Button type="link" onClick={() => showModal(record)}>
-            Edit
-          </Button>
-          <Popconfirm
-            title="Are you sure to delete this student?"
-            onConfirm={() => handleDelete(record.id)}
-          >
-            <Button type="link" danger>
-              Delete
-            </Button>
-          </Popconfirm>
-        </Space>
-      ),
+      render: (record) => {
+        const menu = (
+          <Menu>
+            <Menu.Item onClick={() => showModal(record)}>Edit</Menu.Item>
+            <Menu.Item>
+              <Popconfirm
+                title="Are you sure to delete this student?"
+                onConfirm={() => handleDelete(record.id)}
+                okText="Yes"
+                cancelText="No"
+              >
+                <span>Delete</span>
+              </Popconfirm>
+            </Menu.Item>
+          </Menu>
+        );
+
+        return (
+          <Dropdown overlay={menu} trigger={['click']}>
+            <Button type="text" icon={<MoreOutlined />} />
+          </Dropdown>
+        );
+      },
     },
   ];
 
   return (
     <div style={{ padding: 20 }}>
-      <h2>Student Management</h2>
-      <Button type="primary" onClick={() => showModal()} style={{ marginBottom: 16 }}>
-        + Add Student
-      </Button>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: 16,
+        }}
+      >
+        <h2 style={{ margin: 0 }}>Student Management</h2>
+        <Button type="primary" onClick={() => showModal()}>
+          + Add Student
+        </Button>
+      </div>
+
       <Table dataSource={students} columns={columns} rowKey="id" />
 
       <Modal

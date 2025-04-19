@@ -5,10 +5,10 @@ import {
   HomeOutlined,
   InfoCircleOutlined,
   BookOutlined,
-  PhoneOutlined,
   MenuOutlined,
   UserOutlined
 } from '@ant-design/icons';
+import { PhoneCall } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 const { Sider } = Layout;
 const Sidebar = () => {
@@ -32,7 +32,8 @@ const Sidebar = () => {
           <Menu.Item key="/" icon={<HomeOutlined />}>Home</Menu.Item>
           <Menu.Item key="/about" icon={<InfoCircleOutlined />}>About</Menu.Item>
           <Menu.Item key="/courses" icon={<BookOutlined />}>Courses</Menu.Item>
-          <Menu.Item key="/contact" icon={<PhoneOutlined />}>Contact</Menu.Item>
+          <Menu.Item key="/contact" icon={<PhoneCall size={16} />}>Contact</Menu.Item>
+
           <Menu.Item key="/students" icon={<UserOutlined />}>Students</Menu.Item>
 
 
