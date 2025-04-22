@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import {
   Table,
@@ -67,7 +66,12 @@ const StudentManagement = () => {
       render: (record) => {
         const menu = (
           <Menu>
-            <Menu.Item onClick={() => showModal(record)}>Edit</Menu.Item>
+            <Menu.Item
+              onClick={() => showModal(record)}
+              style={{ color: '#1890ff' }}
+            >
+              ✏️ Edit
+            </Menu.Item>
             <Menu.Item>
               <Popconfirm
                 title="Are you sure to delete this student?"
@@ -75,7 +79,7 @@ const StudentManagement = () => {
                 okText="Yes"
                 cancelText="No"
               >
-                <span>Delete</span>
+                <span style={{ color: '#ff4d4f' }}>🗑️ Delete</span>
               </Popconfirm>
             </Menu.Item>
           </Menu>

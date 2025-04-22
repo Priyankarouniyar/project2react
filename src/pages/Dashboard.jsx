@@ -27,7 +27,7 @@ const stats = [
     color: '#faad14',
   },
   {
-    title: 'Today\'s Attendance',
+    title: "Today's Attendance",
     value: '842 / 950',
     icon: <CheckCircleOutlined />,
     color: '#f5222d',
@@ -41,7 +41,7 @@ const Dashboard = () => {
       <Row gutter={[16, 16]}>
         {stats.map((item, index) => (
           <Col xs={24} sm={12} md={6} key={index}>
-            <Card bordered hoverable>
+            <Card hoverable style={{ textAlign: 'center' }}>
               <Statistic
                 title={item.title}
                 value={item.value}
